@@ -4,7 +4,7 @@
   "description": "fullstack demo of node/angular",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/thynctank/fs-demo#readme",
   "devDependencies": {
+    "jasmine": "^2.8.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.1",
     "karma-jasmine": "^1.1.0"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
   }
 }

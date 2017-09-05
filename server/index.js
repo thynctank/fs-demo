@@ -1,6 +1,28 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-  res.end('Hiya!')
+const express = require('express');
+var accumulator = require('./accumulator');
+var app = express();
+
+app.get('/init', (req, res) => {
+  accumulator.init();
+  res.send('initialized to 0');
 });
 
-server.listen(3000);
+app.get('/add/:val', (req, res) => {
+  if (!req.params.val) {
+    res.send('Error: No val passed');
+  } else {
+    try {
+      accumulator.add(parseInt(req.params.val, 10));
+      res.send('added ' + req.params.val);
+    } catch (e) {
+      res.send('Error: ' + e);
+    }
+  }
+});
+
+app.get('/total', (req, res) => {
+  res.send('this is the total: ' + accumulator.total());
+});
+
+accumulator.init();
+app.listen(3000);
