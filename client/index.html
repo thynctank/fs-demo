@@ -1,1 +1,17 @@
-Empty index
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="angular/angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-app="fs-demo">
+    <div ng-controller="FibonacciCtrl as fib">
+      Selection: {{fib.selection.value}}
+      <fibonacci-typeahead selection="fib.selection"/>
+      <numbers-entered selection="fib.selection" />
+      <running-total selection="fib.selection" />
+    </div>
+  </body>
+</html>

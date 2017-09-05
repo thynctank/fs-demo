@@ -3,6 +3,7 @@ var accumulator = require('./accumulator');
 var app = express();
 
 app.use(express.static('client'));
+app.use(express.static('node_modules'));
 
 app.get('/init', (req, res) => {
   accumulator.init();
