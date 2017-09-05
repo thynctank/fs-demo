@@ -2,6 +2,8 @@ const express = require('express');
 var accumulator = require('./accumulator');
 var app = express();
 
+app.use(express.static('client'));
+
 app.get('/init', (req, res) => {
   accumulator.init();
   res.send('initialized to 0');
