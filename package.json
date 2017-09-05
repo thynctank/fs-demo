@@ -4,7 +4,8 @@
   "description": "fullstack demo of node/angular",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "node ./server/index"
   },
   "repository": {
     "type": "git",

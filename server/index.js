@@ -24,5 +24,15 @@ app.get('/total', (req, res) => {
   res.send('this is the total: ' + accumulator.total());
 });
 
+app.get('/fib', (req, res) => {
+  var fibVals = [1, 1];
+  var nextVal;
+  while (fibVals.length < 30) {
+    nextVal = fibVals[fibVals.length - 1] + fibVals[fibVals.length - 2];
+    fibVals.push(nextVal);
+  }
+  res.json(fibVals);
+});
+
 accumulator.init();
 app.listen(3000);
