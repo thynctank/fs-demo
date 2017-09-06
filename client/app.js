@@ -1,26 +1,54 @@
-var demoApp = angular.module('fs-demo', []);
+var demoApp = angular.module('fs-demo', ['ui.bootstrap']  );
 
 demoApp.component('fibonacciTypeahead', {
   templateUrl: 'fibonacci-typeahead.html',
   bindings: {
-    selection: '='
+    data: '='
   }
 });
 
-demoApp.component('numbersEntered', {
-  templateUrl: 'numbers-entered.html',
-  bindings: {
-    selection: '='
+demoApp.directive('numbersEntered', function() {
+  return {
+    templateUrl: 'numbers-entered.html',
+    scope: {
+      data  : '<'
+    },
+    controller: ['$scope', function ($scope) {
+      $scope.numbers = [];
+
+      $scope.$watch('data.selection', function (newVal, oldVal) {
+        if (newVal) {
+          $scope.numbers.push(newVal);
+        }
+      });
+    }]
   }
 });
 
-demoApp.component('runningTotal', {
-  templateUrl: 'running-total.html',
-  bindings: {
-    selection: '='
-  }
+demoApp.directive('runningTotal', function () {
+  return {
+    templateUrl: 'running-total.html',
+    scope: {
+      data: '<'
+    },
+    controller: ['$scope', function ($scope) {
+      $scope.total = 0;
+
+      $scope.$watch('data.selection', function (newVal, oldVal) {
+        if (newVal) {
+          $scope.total += newVal;
+        }
+      });
+    }]
+  };
 });
 
-demoApp.controller('FibonacciCtrl', function FibonacciCtrl() {
+demoApp.controller('FibonacciCtrl', ['$http', function FibonacciCtrl($http) {
+  var self = this;
 
-});
+  self.data = {};
+
+  $http.get('/fib').then(function success(res) {
+    self.data.vals = res.data;
+  });
+}]);

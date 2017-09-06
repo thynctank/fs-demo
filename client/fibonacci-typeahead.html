@@ -1,1 +1,4 @@
-<input type="number" ng-value="$ctrl.selection.value" />
+<input type="text" ng-model="$ctrl.data.selection"
+  uib-typeahead="val for val in $ctrl.data.vals | filter:$viewValue"
+  typeahead-editable="false"
+  class="form-control" />

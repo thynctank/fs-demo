@@ -3,15 +3,20 @@
 <html>
   <head>
     <script src="angular/angular.js"></script>
+    <script src="angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet" />
     <script src="app.js"></script>
   </head>
 
-  <body ng-app="fs-demo">
-    <div ng-controller="FibonacciCtrl as fib">
-      Selection: {{fib.selection.value}}
-      <fibonacci-typeahead selection="fib.selection"/>
-      <numbers-entered selection="fib.selection" />
-      <running-total selection="fib.selection" />
+  <body ng-app="fs-demo" class="container-fluid">
+    <div class="row">
+      <form ng-controller="FibonacciCtrl as fib">
+        <fibonacci-typeahead data="fib.data"></fibonacci-typeahead>
+        <numbers-entered data="fib.data"></numbers-entered>
+        <running-total data="fib.data"></running-total>
+      </form>
     </div>
   </body>
 </html>
