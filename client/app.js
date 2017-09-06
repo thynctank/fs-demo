@@ -7,22 +7,34 @@ demoApp.component('fibonacciTypeahead', {
   }
 });
 
+demoApp.controller('NumbersEnteredController', function NumbersEnteredController($scope) {
+  $scope.numbers = [];
+
+  $scope.$watch('data.selection', function (newVal, oldVal) {
+    if (newVal) {
+      $scope.numbers.push(newVal);
+    }
+  });
+});
+
 demoApp.directive('numbersEntered', function() {
   return {
     templateUrl: 'numbers-entered.html',
     scope: {
       data  : '<'
     },
-    controller: ['$scope', function ($scope) {
-      $scope.numbers = [];
+    controller: 'NumbersEnteredController'
+  };
+});
 
-      $scope.$watch('data.selection', function (newVal, oldVal) {
-        if (newVal) {
-          $scope.numbers.push(newVal);
-        }
-      });
-    }]
-  }
+demoApp.controller('RunningTotalController', function RunningTotalController($scope) {
+  $scope.total = 0;
+
+  $scope.$watch('data.selection', function (newVal, oldVal) {
+    if (newVal) {
+      $scope.total += newVal;
+    }
+  });
 });
 
 demoApp.directive('runningTotal', function () {
@@ -31,19 +43,11 @@ demoApp.directive('runningTotal', function () {
     scope: {
       data: '<'
     },
-    controller: ['$scope', function ($scope) {
-      $scope.total = 0;
-
-      $scope.$watch('data.selection', function (newVal, oldVal) {
-        if (newVal) {
-          $scope.total += newVal;
-        }
-      });
-    }]
+    controller: 'RunningTotalController'
   };
 });
 
-demoApp.controller('FibonacciCtrl', ['$http', function FibonacciCtrl($http) {
+demoApp.controller('FibonacciController', ['$http', function FibonacciCtrl($http) {
   var self = this;
 
   self.data = {};
