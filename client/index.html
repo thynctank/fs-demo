@@ -7,11 +7,15 @@
     <script src="angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet" />
+    <style>
+
+    </style>
     <script src="app.js"></script>
   </head>
 
-  <body ng-app="fs-demo" class="container-fluid">
+  <body ng-app="fs-demo" class="container">
     <div class="row">
+      <h1>Full Stack Demo</h1>
       <form ng-controller="FibonacciCtrl as fib">
         <fibonacci-typeahead data="fib.data"></fibonacci-typeahead>
         <numbers-entered data="fib.data"></numbers-entered>

@@ -1,8 +1,4 @@
-<div>
-  <span>Numbers Entered:</span>
-  <ul>
-    <li ng-repeat="num in numbers track by $index">
-      {{num}}
-    </li>
-  </ul>
+<div class="form-group">
+  <label>Numbers Entered</label>
+  <textarea class="form-control" readonly ng-value="numbers.join(', ')"></textarea>
 </div>
